@@ -53,7 +53,9 @@ public static class DbSeeder
 
         foreach (var order in orders)
         {
-            order.TotalAmount = context.OrderItems
+            // SQLite cannot translate decimal aggregate Sum reliably in EF Core;
+            // use the in-memory seeded list for deterministic totals.
+            order.TotalAmount = orderItems
                 .Where(i => i.OrderId == order.Id)
                 .Sum(i => i.UnitPrice * i.Quantity);
         }

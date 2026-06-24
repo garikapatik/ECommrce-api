@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run GroceryEcommerceApi",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "${env:USERPROFILE}\\.dotnet\\dotnet.exe",
+            "runtimeArgs": [
+                "run",
+                "--project",
+                "${workspaceFolder}\\GroceryEcommerceApi.csproj",
+                "--urls",
+                "http://localhost:5127"
+            ],
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "DOTNET_ROOT": "${env:USERPROFILE}\\.dotnet"
+            },
+            "serverReadyAction": {
+                "action": "openExternally",
+                "uriFormat": "%s/swagger",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "console": "integratedTerminal"
+        }
+    ]
+}
